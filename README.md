@@ -1,8 +1,12 @@
 <p align="center">
-  <img src="./cover.png" alt="ChatBit — Real-Time Customer Support Platform" width="100%" />
+  <img src="./cover.png" alt="ChatBit — Real-Time Customer Support Platform" width="560" />
 </p>
 
 <h1 align="center">ChatBit — Real-Time Customer Support Platform</h1>
+
+<p align="center">
+  <em>Real-time customer support chat, WhatsApp-style — for Souq Express.</em>
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native" />

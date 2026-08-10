@@ -1,4 +1,18 @@
-# ChatBit — Real-Time Customer Support Platform
+<p align="center">
+  <img src="./cover.png" alt="ChatBit — Real-Time Customer Support Platform" width="100%" />
+</p>
+
+<h1 align="center">ChatBit — Real-Time Customer Support Platform</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native" />
+  <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+  <img src="https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.IO" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
+</p>
 
 ## 1. General Information
 
@@ -230,41 +244,41 @@ All SQL queries must use parameterized queries.
 
 ## 12. Technology Stack
 
-### Mobile
+### 📱 Mobile
 
-* React Native
-* Expo
-* Expo Router
-* Axios
-* TanStack Query
-* socket.io-client
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![Expo Router](https://img.shields.io/badge/Expo_Router-000020?style=for-the-badge&logo=expo&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
+![socket.io-client](https://img.shields.io/badge/socket.io--client-010101?style=for-the-badge&logo=socketdotio&logoColor=white)
 
-### Backend
+### ⚙️ Backend
 
-* Node.js
-* Express.js
-* Socket.IO
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socketdotio&logoColor=white)
 
-### Database
+### 🗄️ Database
 
-* PostgreSQL
-* `pg`
-* Parameterized SQL
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![pg](https://img.shields.io/badge/node--postgres_(pg)-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Parameterized SQL](https://img.shields.io/badge/Parameterized_SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
 
-### Security
+### 🔐 Security
 
-* JWT
-* bcrypt
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![bcrypt](https://img.shields.io/badge/bcrypt-525252?style=for-the-badge&logo=letsencrypt&logoColor=white)
 
-### Documentation
+### 📖 Documentation
 
-* Scalar UI
-* Mermaid
+![Scalar UI](https://img.shields.io/badge/Scalar_UI-1A1A1A?style=for-the-badge&logo=readthedocs&logoColor=white)
+![Mermaid](https://img.shields.io/badge/Mermaid-FF3670?style=for-the-badge&logo=mermaid&logoColor=white)
 
-### Tools
+### 🛠️ Tools
 
-* Git
-* GitHub
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
 ---
 

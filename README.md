@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./cover.png" alt="ChatBit — Real-Time Customer Support Platform" width="560" />
+  <img src="./prensinaple cover.png" alt="ChatBit — Real-Time Customer Support Platform" width="560" />
 </p>
 
 <h1 align="center">ChatBit — Real-Time Customer Support Platform</h1>

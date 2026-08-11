@@ -302,7 +302,109 @@ The project must be organized as a **monorepo**.
 
 ---
 
-## 14. UML & Modeling
+## 14. Getting Started
+
+### Prerequisites
+
+* [Node.js](https://nodejs.org/) 18+ (LTS)
+* [Docker](https://www.docker.com/) (for the PostgreSQL database)
+* [Git](https://git-scm.com/)
+
+### 1. Clone the repository
+
+```bash
+git clone <repo-url>
+cd ChatBit
+```
+
+### 2. Install backend dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### 3. Configure environment variables
+
+Copy the example file and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+| Variable        | Description                         | Example                    |
+| --------------- | ----------------------------------- | -------------------------- |
+| `PORT`          | Port the API server listens on      | `3000`                     |
+| `DB_HOST`       | PostgreSQL host                     | `localhost`                |
+| `DB_PORT`       | PostgreSQL port                     | `5433`                     |
+| `DB_USER`       | Database user                       | `chatbit`                  |
+| `DB_PASSWORD`   | Database password                   | `2026`                     |
+| `DB_NAME`       | Database name                       | `chatbit`                  |
+| `JWT_SECRET`    | Secret used to sign JWTs            | `change_me_super_secret`   |
+| `JWT_EXPIRES_IN`| Token lifetime                      | `7d`                       |
+
+### 4. Start the PostgreSQL database (Docker)
+
+```bash
+docker run -d --name chatbit-db \
+  -e POSTGRES_USER=chatbit \
+  -e POSTGRES_PASSWORD=2026 \
+  -e POSTGRES_DB=chatbit \
+  -p 5433:5432 \
+  -v chatbit_data:/var/lib/postgresql/data \
+  postgres:16-alpine
+```
+
+Manage the container later with:
+
+```bash
+docker start chatbit-db   # start
+docker stop chatbit-db    # stop
+```
+
+### 5. Load the database schema
+
+```bash
+docker exec -i chatbit-db psql -U chatbit -d chatbit < src/db/schema.sql
+```
+
+### 6. Run the backend
+
+```bash
+npm run dev
+```
+
+You should see:
+
+```text
+✅ DB connectée
+✅ Tables synchronisées
+🚀 http://localhost:3000
+```
+
+### 7. Verify
+
+* Health check: [http://localhost:3000/health](http://localhost:3000/health) → `{ "status": "ok" }`
+* API docs (Scalar): [http://localhost:3000/docs](http://localhost:3000/docs)
+
+---
+
+## 15. Available Scripts
+
+Run from the `backend/` directory.
+
+| Script             | Command                        | Description                                             |
+| ------------------ | ------------------------------ | ------------------------------------------------------- |
+| `npm run dev`      | `node --watch src/server.js`   | Start the API in development with auto-reload on changes |
+| `npm start`        | `node src/server.js`           | Start the API in production mode                        |
+| `npm run db:schema`| `psql "$DATABASE_URL" -f src/db/schema.sql` | Apply the database schema (requires `DATABASE_URL`) |
+| `npm run db:seed`  | `psql "$DATABASE_URL" -f src/db/seed.sql`   | Seed the database with sample data (requires `DATABASE_URL`) |
+
+> **Note:** `db:schema` / `db:seed` use a `DATABASE_URL` environment variable. When running Postgres in Docker, you can either set `DATABASE_URL=postgresql://chatbit:2026@localhost:5433/chatbit` or use the `docker exec` command shown in step 5.
+
+---
+
+## 16. UML & Modeling
 
 Before coding, the following diagrams must be created:
 
@@ -316,7 +418,7 @@ Mermaid diagrams will also be included in the README.
 
 ---
 
-## 15. Development Plan
+## 17. Development Plan
 
 ### Day 1
 
@@ -361,7 +463,7 @@ Mermaid diagrams will also be included in the README.
 
 ---
 
-## 16. Deliverables
+## 18. Deliverables
 
 * GitHub monorepo.
 * Backend.
@@ -381,7 +483,7 @@ Mermaid diagrams will also be included in the README.
 
 ---
 
-## 17. Expected Result
+## 19. Expected Result
 
 At the end of the project, ChatBit must allow a **Client** and an **Agent** to communicate through a secure real-time mobile chat.
 

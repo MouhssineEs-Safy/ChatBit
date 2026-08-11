@@ -1,2 +1,17 @@
-// io.use middleware: read JWT from handshake.auth.token, verify, attach socket.user.
-// Reject connection if token missing/invalid. NEVER trust a client-sent userId.
+import { verifyToken } from '../utils/jwt.js';
+
+export function socketAuthMiddleware(socket, next) {
+  const token = socket.handshake.auth?.token;
+
+  if (!token) {
+    return next(new Error('Authentication required'));
+  }
+
+  try {
+    const payload = verifyToken(token);
+    socket.user = payload;
+    next();
+  } catch (error) {
+    next(new Error('Invalid authentication token'));
+  }
+}

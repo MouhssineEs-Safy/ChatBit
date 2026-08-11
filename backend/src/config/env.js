@@ -11,3 +11,8 @@ export const config = {
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
   bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS || '10', 10),
 };
+
+export const PORT = config.port;
+export const DATABASE_URL = config.databaseUrl;
+export const JWT_SECRET = config.jwtSecret;
+

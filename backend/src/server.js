@@ -1,18 +1,13 @@
 import http from 'http';
-import { Server } from 'socket.io';
 import app from './app.js';
 import { config } from './config/env.js';
 import { verifyDbConnection } from './config/db.js';
+import { initSocket } from './socket/index.js';
 
 const server = http.createServer(app);
 
-// Initialize Socket.IO instance
-const io = new Server(server, {
-  cors: {
-    origin: config.clientOrigin,
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  },
-});
+// Initialize Socket.IO with auth middleware & event handlers
+const io = initSocket(server);
 
 const startServer = async () => {
   try {
@@ -31,3 +26,4 @@ const startServer = async () => {
 startServer();
 
 export { server, io };
+

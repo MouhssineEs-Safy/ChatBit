@@ -1,2 +1,18 @@
-// Builds the Express app: cors, json parser, mounts /api routes, /docs (Scalar),
-// and the error middleware. Exports the app (no listen here).
+import express from 'express';
+import cors from 'cors';
+import { config } from './config/env.js';
+import healthRoutes from './routes/health.routes.js';
+import { errorMiddleware } from './middlewares/error.middleware.js';
+
+const app = express();
+
+app.use(cors({ origin: config.clientOrigin }));
+app.use(express.json());
+
+// Mount API routes
+app.use('/api', healthRoutes);
+
+// Central error handler
+app.use(errorMiddleware);
+
+export default app;

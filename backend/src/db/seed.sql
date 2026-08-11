@@ -1,1 +1,0 @@
--- Optional dev seed data (one agent, one client). Passwords are bcrypt hashes.

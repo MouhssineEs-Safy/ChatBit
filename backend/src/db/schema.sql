@@ -6,18 +6,18 @@
 
 BEGIN;
 
--- Clean slate (dev only) --------------------------------------
+-- Clean slate (dev only) ----
 DROP TABLE IF EXISTS messages CASCADE;
 DROP TABLE IF EXISTS conversations CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TYPE  IF EXISTS user_role;
 DROP TYPE  IF EXISTS conversation_status;
 
--- Enums -------------------------------------------------------
+-- Enums ----
 CREATE TYPE user_role           AS ENUM ('client', 'agent');
 CREATE TYPE conversation_status AS ENUM ('en_attente', 'en_cours', 'fermee');
 
--- Users -------------------------------------------------------
+-- Users ----
 CREATE TABLE users (
   id            SERIAL PRIMARY KEY,
   fullname      VARCHAR(120)  NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE users (
   createdat     TIMESTAMPTZ   NOT NULL DEFAULT NOW()
 );
 
--- Conversations -----------------------------------------------
+-- Conversations -----
 CREATE TABLE conversations (
   id         SERIAL PRIMARY KEY,
   subject    VARCHAR(200)         NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE conversations (
   closedat   TIMESTAMPTZ
 );
 
--- Messages ----------------------------------------------------
+-- Messages ----------
 CREATE TABLE messages (
   id              SERIAL PRIMARY KEY,
   conversationid  INTEGER      NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
@@ -49,7 +49,7 @@ CREATE TABLE messages (
   sentat          TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 
--- Indexes (performance for listing + pagination) --------------
+-- Indexes (performance for listing + pagination) -------
 CREATE INDEX idx_conversations_clientid ON conversations(clientid);
 CREATE INDEX idx_conversations_agentid  ON conversations(agentid);
 CREATE INDEX idx_conversations_status   ON conversations(status);

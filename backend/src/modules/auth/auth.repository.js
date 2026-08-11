@@ -1,21 +1,19 @@
-
-import sequelize from "../../config/db.js";
-import { QueryTypes } from "sequelize";
+import { query } from "../../config/db.js";
 
 export async function findByEmail(email) {
-  const rows = await sequelize.query(
+  const result = await query(
     `SELECT id, fullname, email, passwordhash, role FROM users WHERE email = $1`,
-    { bind: [email], type: QueryTypes.SELECT }
+    [email]
   );
-  return rows[0] || null;   
+  return result.rows[0] || null;
 }
 
 export async function createUser({ fullname, email, passwordhash, role }) {
-  const rows = await sequelize.query(
+  const result = await query(
     `INSERT INTO users (fullname, email, passwordhash, role)
      VALUES ($1, $2, $3, $4)
      RETURNING id, fullname, email, role, createdat`,
-    { bind: [fullname, email, passwordhash, role], type: QueryTypes.INSERT }
+    [fullname, email, passwordhash, role]
   );
-  return rows[0][0];  
+  return result.rows[0];
 }

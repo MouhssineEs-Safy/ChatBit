@@ -1,24 +1,33 @@
-// Entry point: create HTTP server from app, attach Socket.IO (src/socket), listen on PORT.
-import app from "./app.js";
-import Sequelize from "./config/db.js";
+import http from 'http';
+import { Server } from 'socket.io';
+import app from './app.js';
+import { config } from './config/env.js';
+import { verifyDbConnection } from './config/db.js';
 
-const PORT = process.env.PORT || 3000;
+const server = http.createServer(app);
 
-const Start = async () =>{
+// Initialize Socket.IO instance
+const io = new Server(server, {
+  cors: {
+    origin: config.clientOrigin,
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  },
+});
 
-    try {
+const startServer = async () => {
+  try {
+    // Verify PostgreSQL connection at startup
+    await verifyDbConnection();
 
-        await Sequelize.authenticate();
-        console.log("✅ DB connectée")
-
-        await Sequelize.sync();
-        console.log("✅ Tables synchronisées");
-
-        app.listen(PORT, () => console.log(`🚀 http://localhost:${PORT}`));
-    } catch (error) {
-        console.error("❌ Impossible de démarrer :", error);
-        process.exit(1);
-    }
+    server.listen(config.port, () => {
+      console.log(`ChatBit server running on port ${config.port} in ${config.nodeEnv} mode`);
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error.message);
+    process.exit(1);
+  }
 };
 
-Start();
+startServer();
+
+export { server, io };

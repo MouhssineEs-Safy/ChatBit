@@ -1,0 +1,59 @@
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;overflow-x:hidden;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface": "#f9f9ff", "on-surface": "#1a1c20" } } } }</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-surface pt-safe pb-safe flex flex-col min-h-screen"><main class="flex flex-col relative w-full bg-surface"><div class="flex flex-col w-full h-full justify-center items-center px-4 bg-surface-bright">
+<div class="flex flex-col items-center w-full max-w-sm space-y-8 pb-[10vh]">
+<!-- Logo -->
+<div class="w-24 h-24 rounded-2xl overflow-hidden shadow-sm bg-surface-container flex items-center justify-center shrink-0">
+<img alt="ChatBit Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF9N-u076Kk4tOIWjojKWq_0MSwbFKyT_J2pPHS8Vp2heWdriFThBWXEVpNt5eh_SKKY5YJ00upGMSWMEkK-grHIv0lW-uS2PqfaaiHpiV3dTCK5cKV6mUwuLgMFhVxv61dh_3HgZaGR0PxecyCyz8wCiIrg_nFr8qo5bDVmSL9MA5GsWV_B4yBDaMTbbChAen6B-xwDmZABOBLOutND3kFwSMvp3nCuOmFj9LYJEefvpLKxPCpIfz"/>
+</div>
+<!-- Header Text -->
+<div class="text-center space-y-2">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Bienvenue</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Connectez-vous pour continuer</p>
+</div>
+<!-- Form -->
+<form action="#" class="w-full flex flex-col space-y-4" method="POST" onsubmit="event.preventDefault();">
+<!-- Email -->
+<div class="relative group">
+<label class="absolute -top-2 left-3 bg-surface-bright px-1 font-label-md text-label-md text-on-surface-variant group-focus-within:text-primary transition-colors z-10" for="email">Email</label>
+<input class="w-full h-12 px-4 rounded-lg bg-surface-bright text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="email" name="email" placeholder="agent@chatbit.com" required="" style="box-shadow: inset 0 0 0 1px #e2e2e8;" type="email"/>
+</div>
+<!-- Password -->
+<div class="relative group">
+<label class="absolute -top-2 left-3 bg-surface-bright px-1 font-label-md text-label-md text-on-surface-variant group-focus-within:text-primary transition-colors z-10" for="password">Mot de passe</label>
+<input class="w-full h-12 px-4 rounded-lg bg-surface-bright text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="password" name="password" placeholder="••••••••" required="" style="box-shadow: inset 0 0 0 1px #e2e2e8;" type="password"/>
+<button class="absolute right-3 top-3 text-on-surface-variant hover:text-on-surface transition-colors" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="visibility-icon">visibility_off</span>
+</button>
+</div>
+<div class="flex justify-end w-full pb-2">
+<a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors" href="#">Mot de passe oublié ?</a>
+</div>
+<!-- Submit -->
+<button class="w-full h-12 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center justify-center space-x-2 active:scale-[0.98]" type="submit">
+<span>Se connecter</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Register Link -->
+<div class="pt-4">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Nouveau sur ChatBit ? 
+                <a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors ml-1" href="#">Créer un compte</a>
+</p>
+</div>
+</div>
+</div>
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const icon = document.getElementById('visibility-icon');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.textContent = 'visibility';
+        } else {
+            passwordInput.type = 'password';
+            icon.textContent = 'visibility_off';
+        }
+    }
+</script></main></body></html>

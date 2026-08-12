@@ -192,7 +192,7 @@ API documentation must be available through **Scalar UI** at:
 
 ## 10. Socket.IO Rules
 
-* Socket connections require a valid JWT.
+* Socket connections require a valid JWT..
 * Each conversation uses a Socket.IO room.
 * Users can only join authorized conversations.
 * Only the conversation client or assigned agent can join.

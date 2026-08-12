@@ -1,0 +1,138 @@
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;overflow-x:hidden;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-bright": "#f9f9ff", "error-container": "#ffdad6", "error": "#ba1a1a", "tertiary-fixed": "#ffdcc3", "surface-container-highest": "#e2e2e8", "inverse-surface": "#2e3035", "surface": "#f9f9ff", "on-secondary-fixed-variant": "#38485d", "on-surface-variant": "#424750", "background": "#f9f9ff", "secondary-fixed": "#d3e4fe", "secondary": "#505f76", "primary-fixed": "#d5e3ff", "surface-container": "#ededf3", "surface-tint": "#2f5f9c", "tertiary-container": "#793f00", "secondary-fixed-dim": "#b7c8e1", "on-secondary-fixed": "#0b1c30", "primary-container": "#1a4f8b", "on-secondary": "#ffffff", "primary": "#00386c", "on-primary-fixed-variant": "#0c4783", "on-primary-container": "#9bc2ff", "on-primary-fixed": "#001c3b", "on-error": "#ffffff", "surface-container-high": "#e8e8ed", "on-tertiary-fixed": "#2f1500", "outline-variant": "#c2c6d1", "surface-variant": "#e2e2e8", "on-tertiary": "#ffffff", "on-background": "#1a1c20", "on-surface": "#1a1c20", "outline": "#737781", "surface-container-lowest": "#ffffff", "inverse-primary": "#a6c8ff", "secondary-container": "#d0e1fb", "tertiary-fixed-dim": "#ffb77e", "on-tertiary-fixed-variant": "#6e3900", "on-tertiary-container": "#ffae6b", "on-primary": "#ffffff", "inverse-on-surface": "#f0f0f6", "tertiary": "#582c00", "on-secondary-container": "#54647a", "surface-dim": "#d9d9df", "on-error-container": "#93000a", "primary-fixed-dim": "#a6c8ff", "surface-container-low": "#f3f3f9" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "inline-padding": "16px", "container-margin": "16px", "stack-gap": "12px", "chat-gap": "8px" }, "fontFamily": { "chat-bubble": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "headline-lg": ["Inter"], "headline-md": ["Inter"], "body-lg": ["Inter"], "body-md": ["Inter"] }, "fontSize": { "chat-bubble": ["15px", { "lineHeight": "22px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md"><header class="fixed top-0 inset-x-0 z-50 bg-surface-container-lowest/80 backdrop-blur-xl pt-safe shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 px-4 flex items-center gap-3"><button class="w-10 h-10 flex items-center justify-center text-primary" onclick="history.back()"><span class="material-symbols-outlined">arrow_back_ios_new</span></button><h1 class="font-headline-md text-headline-md text-on-surface flex-1">Chat Room</h1><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAovC8ewXbXdEnNfCN5d1SXf_8uuKGqf6CCRHCcnkTZtfIfFsuXCoKhQpiiwZ8vByb1tYEQm2IP3qG2W94mbrNJ1d0Odu4UL-eGrU9Umqz90G6BzBToFD7JPHw533q2iWJgRJyVudwBIcIbRGWsMHu0DX8UiDfERR3F_hG2SlI7tCXQk-zzA1saGBRfaU5J-9ad5l4b5vHjdAgQXhk6fBQP_fMhOePoAiAOW6kaBGEsqBVwtUBTQVt9"/></div></header><main class="flex flex-col relative w-full pt-14 bg-surface min-h-screen"><div class="flex flex-col w-full h-full relative" style="height: calc(100vh - 56px);">
+<!-- Connection Banner (Hidden by default, shown for demonstration) -->
+<div class="w-full bg-error-container text-on-error-container text-body-sm py-1 px-4 text-center hidden transform -translate-y-full transition-transform duration-300 z-10 absolute top-0 left-0 flex items-center justify-center gap-2" id="connection-banner">
+<span class="material-symbols-outlined text-[16px] animate-spin">sync</span>
+<span>Reconnexion...</span>
+</div>
+<!-- Header details (Agent View override - since shell has header, we add context here) -->
+<div class="px-4 py-3 bg-surface-container-lowest flex items-center justify-between shadow-sm z-10 relative">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-md">
+          FZ
+        </div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-surface-container-lowest"></div>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Fatima Z.</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span>En ligne</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>#CMD-8492</span>
+</p>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant rounded-full active:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Message Area -->
+<div class="flex-1 overflow-y-auto px-4 py-6 flex flex-col gap-chat-gap bg-surface" id="chat-container">
+<!-- Date Separator -->
+<div class="flex justify-center my-2">
+<span class="bg-surface-container-high text-on-surface-variant font-label-md text-label-md px-3 py-1 rounded-full">Aujourd'hui</span>
+</div>
+<!-- Received Message (Client) -->
+<div class="flex flex-col items-start max-w-[85%] self-start gap-1">
+<div class="bg-surface-container text-on-surface font-chat-bubble text-chat-bubble px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm">
+        Bonjour, quand arrive ma commande ?
+      </div>
+<span class="font-body-sm text-body-sm text-outline px-1">10:42</span>
+</div>
+<!-- Sent Message (Agent) -->
+<div class="flex flex-col items-end max-w-[85%] self-end gap-1 mt-3">
+<div class="bg-primary text-on-primary font-chat-bubble text-chat-bubble px-4 py-3 rounded-2xl rounded-tr-sm shadow-sm">
+        Bonjour Fatima, je regarde ça tout de suite.
+      </div>
+<div class="flex items-center gap-1 px-1">
+<span class="font-body-sm text-body-sm text-outline">10:43</span>
+<span class="material-symbols-outlined text-[14px] text-primary">done_all</span>
+</div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex flex-col items-start max-w-[85%] self-start gap-1 mt-3 transition-opacity duration-300" id="typing-indicator">
+<div class="bg-surface-container text-on-surface-variant px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm flex items-center gap-1 h-11">
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-[bounce_1s_infinite_0ms]"></div>
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-[bounce_1s_infinite_200ms]"></div>
+<div class="w-1.5 h-1.5 bg-outline rounded-full animate-[bounce_1s_infinite_400ms]"></div>
+</div>
+<span class="font-body-sm text-body-sm text-outline px-1">Fatima écrit...</span>
+</div>
+<!-- Spacer to ensure bottom content isn't hidden behind input -->
+<div class="h-4"></div>
+</div>
+<!-- Input Area (Fixed to bottom, above keyboard safe area) -->
+<div class="bg-surface-container-lowest px-4 py-3 shadow-[0_-4px_16px_rgba(0,0,0,0.04)] z-20 pb-safe">
+<!-- Action Top Bar -->
+<div class="flex justify-between items-center mb-2 px-1">
+<button class="text-error font-label-md text-label-md uppercase tracking-wider flex items-center gap-1 active:opacity-70 transition-opacity h-8">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+        Clôturer la discussion
+      </button>
+</div>
+<div class="flex items-end gap-2 bg-surface-container rounded-xl p-1 relative">
+<button class="w-11 h-11 flex-shrink-0 flex items-center justify-center text-on-surface-variant active:bg-surface-variant rounded-full transition-colors self-end">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent text-on-surface font-body-md text-body-md py-3 px-2 resize-none outline-none max-h-[120px] min-h-[44px]" id="chat-input" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" placeholder="Écrivez votre message..." rows="1"></textarea>
+<button class="w-11 h-11 flex-shrink-0 flex items-center justify-center text-primary bg-primary-container/20 rounded-full active:bg-primary-container/40 transition-colors self-end mb-0.5 mr-0.5">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  // Simple interaction simulation
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('chat-input');
+    const container = document.getElementById('chat-container');
+    const typingIndicator = document.getElementById('typing-indicator');
+    
+    // Auto-scroll to bottom
+    container.scrollTop = container.scrollHeight;
+
+    // Simulate connection drop
+    setTimeout(() => {
+      const banner = document.getElementById('connection-banner');
+      banner.classList.remove('hidden');
+      setTimeout(() => banner.classList.remove('-translate-y-full'), 50);
+      
+      setTimeout(() => {
+        banner.classList.add('-translate-y-full');
+        setTimeout(() => banner.classList.add('hidden'), 300);
+      }, 3000);
+    }, 5000);
+
+    // Hide typing after a while
+    setTimeout(() => {
+      typingIndicator.style.opacity = '0';
+      setTimeout(() => {
+        typingIndicator.classList.add('hidden');
+        
+        // Add new message
+        const newMsg = document.createElement('div');
+        newMsg.className = 'flex flex-col items-start max-w-[85%] self-start gap-1 mt-3 animate-[fadeIn_0.3s_ease-out]';
+        newMsg.innerHTML = `
+          <div class="bg-surface-container text-on-surface font-chat-bubble text-chat-bubble px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm">
+            D'accord merci. C'est urgent !
+          </div>
+          <span class="font-body-sm text-body-sm text-outline px-1">10:43</span>
+        `;
+        container.insertBefore(newMsg, typingIndicator);
+        container.scrollTop = container.scrollHeight;
+      }, 300);
+    }, 4000);
+  });
+</script>
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style></main></body></html>

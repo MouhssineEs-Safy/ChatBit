@@ -1,33 +1,37 @@
-import http from 'http';
-import { Server } from 'socket.io';
-import app from './app.js';
-import { config } from './config/env.js';
-import { verifyDbConnection } from './config/db.js';
+import express from "express";
+import cors from "cors";
+import sequelize from "./config/db.js";
+import authRoutes from "./modules/auth/auth.routes.js";
+import { errorMiddleware } from "./middlewares/error.middleware.js";
 
-const server = http.createServer(app);
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Initialize Socket.IO instance
-const io = new Server(server, {
-  cors: {
-    origin: config.clientOrigin,
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  },
+app.use(cors());
+app.use(express.json());
+// (logger line removed)
+
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
-const startServer = async () => {
-  try {
-    // Verify PostgreSQL connection at startup
-    await verifyDbConnection();
+app.use("/api/auth", authRoutes);
 
-    server.listen(config.port, () => {
-      console.log(`ChatBit server running on port ${config.port} in ${config.nodeEnv} mode`);
-    });
+app.use(errorMiddleware);   // ← renamed from errorHandler
+
+const start = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("✅ DB connectée");
+
+    await sequelize.sync();
+    console.log("✅ Tables synchronisées");
+
+    app.listen(PORT, () => console.log(`🚀 http://localhost:${PORT}`));
   } catch (error) {
-    console.error('Failed to start server:', error.message);
+    console.error("❌ Impossible de démarrer :", error);
     process.exit(1);
   }
 };
 
-startServer();
-
-export { server, io };
+start();

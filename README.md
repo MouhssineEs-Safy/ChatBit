@@ -192,7 +192,7 @@ API documentation must be available through **Scalar UI** at:
 
 ## 10. Socket.IO Rules
 
-* Socket connections require a valid JWT.
+* Socket connections require a valid JWT..
 * Each conversation uses a Socket.IO room.
 * Users can only join authorized conversations.
 * Only the conversation client or assigned agent can join.
@@ -288,17 +288,74 @@ All SQL queries must use parameterized queries.
 
 ## 13. Repository Structure
 
+The project is organized as a **monorepo** with two apps (`backend/` + `mobile/`) and shared docs.
+
 ```text
-chatbit/
-├── backend/
-├── mobile/
+ChatBit/
+├── backend/                        # Node.js + Express + Socket.IO API
+│   ├── src/
+│   │   ├── app.js                  # Express app: CORS, JSON, routes, Scalar docs, error handler
+│   │   ├── server.js               # HTTP + Socket.IO bootstrap, DB connection
+│   │   ├── config/
+│   │   │   └── db.js               # PostgreSQL connection (pg)
+│   │   ├── middlewares/
+│   │   │   ├── auth.middleware.js  # Verifies JWT, attaches req.user
+│   │   │   └── error.middleware.js # Central error handler (HttpError → JSON)
+│   │   ├── modules/                # Feature modules (routes → controller → service → repository)
+│   │   │   ├── auth/               #   register / login, bcrypt, JWT
+│   │   │   ├── users/              #   GET /api/users/me
+│   │   │   ├── conversations/      #   create / list / close conversations
+│   │   │   └── messages/           #   message history (paginated)
+│   │   ├── socket/                 # Real-time layer
+│   │   │   ├── index.js            #   Socket.IO server setup
+│   │   │   ├── socket.auth.js      #   JWT auth for sockets
+│   │   │   ├── events.js           #   Event name constants
+│   │   │   └── handlers/           #   message / conversation / typing / presence
+│   │   ├── controllers/            # Shared controllers (health)
+│   │   ├── routes/                 # Shared routes (health)
+│   │   ├── docs/                   # OpenAPI definition (Scalar)
+│   │   └── utils/                  # jwt.js, password.js (bcrypt), httpError.js
+│   └── package.json
+│
+├── mobile/                         # React Native + Expo (Expo Router, TypeScript)
+│   ├── app/                        # File-based routing
+│   │   ├── (auth)/                 #   login / register
+│   │   ├── (app)/                  #   conversations list, chat [id], profile
+│   │   └── _layout.tsx, index.tsx
+│   ├── src/
+│   │   ├── api/                    # REST clients (auth, conversations, messages)
+│   │   ├── socket/                 # Socket.IO client + event constants
+│   │   ├── context/                # AuthContext (current user)
+│   │   ├── hooks/                  # useAuth, useConversations, useMessages, useSocket
+│   │   ├── components/             # MessageBubble, MessageInput, TypingIndicator, PresenceBadge…
+│   │   ├── store/                  # TanStack Query client
+│   │   ├── types/                  # Shared TypeScript types
+│   │   └── utils/                  # storage (expo-secure-store)
+│   └── package.json
+│
+├── docs/                           # ARCHITECTURE.md, class-diagram.md, ClassDiagram.pdf
 ├── schema.sql
 ├── README.md
-├── .env.example
 └── .gitignore
 ```
 
-The project must be organized as a **monorepo**.
+### Backend module pattern
+
+Every feature module (`auth`, `users`, `conversations`, `messages`) follows the same 4-file layout, separating HTTP handling, business rules, and data access:
+
+| File               | Responsibility                                             |
+| ------------------ | ---------------------------------------------------------- |
+| `*.routes.js`      | Maps HTTP method + URL → controller function               |
+| `*.controller.js`  | Reads the request, calls the service, returns the response |
+| `*.service.js`     | Business rules & validation (the decision layer)           |
+| `*.repository.js`  | Parameterized SQL queries against PostgreSQL               |
+
+**Request flow (REST):**
+
+```text
+Mobile → routes → controller → service (rules) → repository → PostgreSQL
+Mobile ←───────────────── response ←───────────────────────────┘
+```
 
 ---
 
@@ -384,7 +441,7 @@ You should see:
 
 ### 7. Verify
 
-* Health check: [http://localhost:3000/health](http://localhost:3000/health) → `{ "status": "ok" }`
+* Health check: [http://localhost:3000/api/health](http://localhost:3000/api/health) → `{ "status": "ok" }`
 * API docs (Scalar): [http://localhost:3000/docs](http://localhost:3000/docs)
 
 ---
